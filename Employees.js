@@ -4,7 +4,7 @@ function searchEmployeeByName(sheet_name, employee_name) {
 
   // WTF: http://stackoverflow.com/questions/35026731/pass-google-sheet-data-to-local-node-js-server-via-google-app-script
   //var ss = SpreadsheetApp.openById("1C8ucPY9a7u7kNIupjTWrwe4E1d8IHKjf3UNYm2sRzCk");
-  var ss = SpreadsheetApp.open(DriveApp.getFileById("1C8ucPY9a7u7kNIupjTWrwe4E1d8IHKjf3UNYm2sRzCk"));
+  var ss = SpreadsheetApp.open(DriveApp.getFileById("..."));
   
   var sheet = ss.getSheetByName(sheet_name);
   if(sheet == null) return "No sheet ", sheet_name;
