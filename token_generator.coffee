@@ -86,7 +86,7 @@ storeToken = (token) ->
 ###
 
 callAppsScript = (auth) ->
-  scriptId = '...'
+  scriptId = 'M2KKyOiR9nKTnFXMXZz9bmJZrIPuIe0A9'
   script = google.script('v1')
   # Make the API request. The request object is included here as 'resource'.
   script.scripts.run {
