@@ -138,7 +138,7 @@ searchEmployeeByPhone = (phone, callback) ->
         scriptId: scriptId
 
     await script.scripts.run request, defer(err, resp)
-    
+
     if err
         return callback 'The API returned an error: ' + err
 
@@ -221,17 +221,22 @@ sendHelp = (uid) -> bot.sendMessage uid, """
 ### TELEGRAM CALLBACKS ###
 
 bot.on "message", (msg)->
+   
     console.log msg
+    
     if msg.text is moneyToCat
         bot.sendSticker msg.from.id, randomPushenSticker()
         await setTimeout defer(), 1000
         bot.sendMessage msg.from.id, randomPushenAnswer()
         return
-
+        
+    # Проверяем сотрудника, есть ли его телефон
     if msg.contact
         if msg.contact.user_id is msg.from.id
-                        
-            await searchEmployeeByPhone msg.contact.phone_number, defer result
+        
+            # удаляем все кроме цифр и первую цифру
+            phone = msg.contact.phone_number?.replace(/[^\d]+/g, '')[1..]
+            await searchEmployeeByPhone phone, defer result
             if result?.length
                 
                 employes[msg.from.id] = msg.contact
@@ -255,10 +260,9 @@ bot.on "message", (msg)->
                 bot.sendSticker msg.from.id, "BQADAgADcAMAAjbsGwVDMuARxEYKkwI"
                 bot.sendMessage msg.from.id, """
                     Алё! #{msg.from.first_name}? 
-                    Я не нашел номер #{msg.contact.phone_number} в базе сотрудников!
+                    Я не нашел номер #{phone} в базе сотрудников!
                     Попроси Катю проверить твой номер!
                     """
-
         else
             bot.sendMessage msg.from.id, """
                 Алё! КГБ?
