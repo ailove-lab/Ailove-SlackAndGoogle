@@ -1,2 +1,3 @@
-# Ailove-SlackAndGoogle
-Slack and google spreadsheets integration
+# Ailove-TeamBot
+
+Бот для телеграма осуществляющий поиск контактов сотрудника
